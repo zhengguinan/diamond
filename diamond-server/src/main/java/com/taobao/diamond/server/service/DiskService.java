@@ -93,13 +93,11 @@ public class DiskService {
                 FileUtils.writeStringToFile(tempFile, content, Constants.ENCODE);
                 // 用临时文件覆盖目标文件, 完成本次磁盘操作
                 FileUtils.copyFile(tempFile, targetFile);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 String errorMsg = "save disk error, dataId=" + dataId + ",group=" + group;
                 log.error(errorMsg, e);
                 throw new ConfigServiceException(errorMsg, e);
-            }
-            finally {
+            } finally {
                 // 删除临时文件
                 if (tempFile != null && tempFile.exists()) {
                     FileUtils.deleteQuietly(tempFile);
@@ -107,9 +105,8 @@ public class DiskService {
                 // 清除标记
                 this.modifyMarkCache.remove(cacheKey);
             }
-        }
-        else {
-            throw new ConfigServiceException("config info is being motified, dataId=" + dataId + ",group=" + group);
+        } else {
+            throw new ConfigServiceException("config info is being modified, dataId=" + dataId + ",group=" + group);
         }
 
     }

@@ -117,8 +117,7 @@ public class ConfigService {
             diskService.saveToDisk(configInfo);
             // 通知其他节点
             this.notifyOtherNodes(dataId, group);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             log.error("保存ConfigInfo失败", e);
             throw new ConfigServiceException(e);
         }
